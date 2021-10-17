@@ -1,7 +1,7 @@
 <br />
 
 <h3 align="center">
-    <a href="https://lanoliveira.github.io/programacaoParaWeb/">Website Replicado</a>
+    <a href="https://lanoliveira.github.io/ProgramacaoParaWeb/">Website Replicado</a>
 </h3>    
 
 <br />
