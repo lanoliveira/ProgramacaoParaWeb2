@@ -1,4 +1,5 @@
 /* CSS novo - Adaptar */
+
 #avatar {
     display: flex;
     align-items: center;
@@ -88,7 +89,6 @@ body {
 }
 
 .menu ul li a {
-    cursor: pointer;
     display: block;
     color: #6e6d7a;
     font-weight: 500;
@@ -745,6 +745,7 @@ main a video {
         grid-template-columns: repeat(auto-fill, minmax(371px, 1fr));
     }
 }
+
 
 .bloco-log {
     background: #ffffff;
