@@ -690,20 +690,8 @@ main a video {
         padding-bottom: 20px;
         grid-template-columns: repeat(auto-fill, minmax(371px, 1fr));
     }
-}
 
-.bloco-log {
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.none { display: none; }
-
-/* CSS novo - Adaptar */
+    /* CSS novo - Adaptar */
 #avatar {
     display: flex;
     align-items: center;
@@ -757,3 +745,17 @@ fieldset {
     color: rgb(255, 255, 255);
     font-size: 15px;
 }
+}
+
+.bloco-log {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.none { display: none; }
+
+
