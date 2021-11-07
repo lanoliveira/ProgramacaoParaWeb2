@@ -6,6 +6,7 @@
     <title>Dribbble - Discover the world’s Top</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -81,7 +82,7 @@
                         </a>
                     </li>
                     <li class="ul-2-right">
-                        <a id="Sign-up" class="bt-sign-in" target="_blank">
+                        <a id="Sign-up" class="bt-sign-in">
                             Sign up
                         </a>
                     </li>
@@ -395,11 +396,11 @@
 
         request = new XMLHttpRequest();
 
-        
+
         // if (JSON.parse(localStorage.getItem('user')).avatar == null){
         //     signIn();
         // }
-   
+
         btLogin.forEach(bt => bt.addEventListener('click', function () {
             bloco.className += ' bloco-log';
             blocoI.className += ' none';
@@ -410,25 +411,36 @@
             //data = {email: form.elements['email'].value, password: form.elements['password'].value};
             data = { email: "eve.holt@reqres.in", password: "cityslicka" };
             postData(data);
-            signIn();
         };
 
-        function getData() {
-            request.open('GET', 'https://reqres.in/api/users?page=1', true);
-            request.onload = function () {
-                if (request.status > 200) {
-                    alert('');
-                    // Arrumarrrrrrrrrrrrrrrrrrrrr
-                } else {
-                    for (var i = 0; i < request.response.data.length; i++) {
-                        if (request.response.data[i].email == data.email) {
-                            localStorage.setItem('user', JSON.stringify(request.response.data[i]));
-                        }
-                    }
+        async function getData() {
 
+            let json = await axios.get('https://reqres.in/api/users?page=1' + '/json');
+            console.log(json.data.data);
+
+            for (var i = 0; i < json.data.data.length; i++) {
+                if (json.data.data[i].email == data.email) {
+                    localStorage.setItem('user', JSON.stringify(json.data.data[i]));
                 }
-            };
-            request.send();
+            }
+
+            signIn();
+
+            // request.open('GET', 'https://reqres.in/api/users?page=1', true);
+            // request.onload = function () {
+            //     if (request.status > 200) {
+            //         alert('');
+            //         // Arrumarrrrrrrrrrrrrrrrrrrrr
+            //     } else {
+            //         for (var i = 0; i < request.response.data.length; i++) {
+            //             if (request.response.data[i].email == data.email) {
+            //                 localStorage.setItem('user', JSON.stringify(request.response.data[i]));
+            //             }
+            //         }
+
+            //     }
+            // };
+            // request.send();
         };
 
         function postData(data) {
@@ -459,7 +471,7 @@
             avatarShow.removeAttribute('style');
             avatar.setAttribute('src', JSON.parse(localStorage.getItem('user')).avatar);
         }
- 
+
 
     </script>
 </body>
