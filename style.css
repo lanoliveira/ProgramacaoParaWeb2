@@ -1,7 +1,4 @@
 /* CSS novo - Adaptar */
-a {
-    cursor: pointer;
-}
 #avatar {
     display: flex;
     align-items: center;
@@ -759,3 +756,6 @@ main a video {
 }
 
 .none { display: none; }
+a {
+    cursor: pointer;
+}
