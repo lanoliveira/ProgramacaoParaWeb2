@@ -408,8 +408,8 @@
         }));
 
         function btSubmit() {
-            //data = {email: form.elements['email'].value, password: form.elements['password'].value};
-            data = { email: "eve.holt@reqres.in", password: "cityslicka" };
+            data = {email: form.elements['email'].value, password: form.elements['password'].value};
+            // data = { email: "eve.holt@reqres.in", password: "cityslicka" };
             postData(data);
         };
 
@@ -425,22 +425,6 @@
             }
 
             signIn();
-
-            // request.open('GET', 'https://reqres.in/api/users?page=1', true);
-            // request.onload = function () {
-            //     if (request.status > 200) {
-            //         alert('');
-            //         // Arrumarrrrrrrrrrrrrrrrrrrrr
-            //     } else {
-            //         for (var i = 0; i < request.response.data.length; i++) {
-            //             if (request.response.data[i].email == data.email) {
-            //                 localStorage.setItem('user', JSON.stringify(request.response.data[i]));
-            //             }
-            //         }
-
-            //     }
-            // };
-            // request.send();
         };
 
         function postData(data) {
