@@ -64,7 +64,7 @@
             <div class="menu right">
                 <ul>
                     <li class="ul-2-left">
-                        <a data-site-nav-element="Search" href="/search">
+                        <a id="search" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"
                                 fill="none" role="img" class="icon">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -397,9 +397,9 @@
         request = new XMLHttpRequest();
 
 
-        // if (JSON.parse(localStorage.getItem('user')).avatar == null){
-        //     signIn();
-        // }
+        if (localStorage.length > 0){
+            signIn();
+        }
 
         btLogin.forEach(bt => bt.addEventListener('click', function () {
             bloco.className += ' bloco-log';
