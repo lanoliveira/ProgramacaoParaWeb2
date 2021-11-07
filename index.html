@@ -72,13 +72,16 @@
                             </svg>
                         </a>
                     </li>
+                    <li id="avatar" style="display: none">
+                        <img id="avatar-img" alt="" width="32" height="32">
+                    </li>
                     <li class="ul-2-middle">
-                        <a href="" id="Sign-in">
+                        <a id="Sign-in" class="bt-sign-in">
                             Sign in
                         </a>
                     </li>
                     <li class="ul-2-right">
-                        <a href="" id="Sign-up">
+                        <a id="Sign-up" class="bt-sign-in">
                             Sign up
                         </a>
                     </li>
@@ -96,7 +99,7 @@
                         Dribbble is the leading destination to find & showcase creative work and home to the world's
                         best design professionals.
                     </p>
-                    <a href="">
+                    <a class="bt-sign-in">
                         Sign up
                     </a>
 
@@ -112,6 +115,28 @@
                         </a>
                     </span>
                 </div>
+            </div>
+            <!-- Bloco Login -->
+            <div class="bloco-login none">
+                <form action="" method="post">
+                    <fieldset>
+                        <div>
+                            <fieldset>
+                                <label for="">Email Address</label>
+                                <input type="text" name="email" id="email">
+                            </fieldset>
+                        </div>
+                        <div>
+                            <fieldset>
+                                <label for="">Password</label>
+                                <input type="password" name="password" id="password">
+                            </fieldset>
+                            <div>
+                                <input class="button-sub sign-in" type="button" value="Sign In" onclick="btSubmit()">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
         <main>
@@ -356,10 +381,87 @@
                 </ol>
             </div>
         </main>
-        <footer>
-
-        </footer>
     </div>
+    <script type="text/javascript" charset="utf-8">
+        var blocoLogin = document.querySelector('.bloco-login'),
+            bloco = document.querySelector('.bloco'),
+            blocoI = document.querySelector('.bloco-i'),
+            btLogin = document.querySelectorAll('.bt-sign-in'),
+            btUpload = document.querySelector('#Sign-up'),
+            btSign = document.querySelector('.ul-2-middle'),
+            avatarShow = document.querySelector('#avatar'),
+            avatar = document.querySelector('#avatar-img'),
+            form = document.querySelector('form');
+
+        request = new XMLHttpRequest();
+
+        
+        // if (JSON.parse(localStorage.getItem('user')).avatar == null){
+        //     signIn();
+        // }
+   
+        btLogin.forEach(bt => bt.addEventListener('click', function () {
+            bloco.className += ' bloco-log';
+            blocoI.className += ' none';
+            blocoLogin.className = 'bloco-login';
+        }));
+
+        function btSubmit() {
+            //data = {email: form.elements['email'].value, password: form.elements['password'].value};
+            data = { email: "eve.holt@reqres.in", password: "cityslicka" };
+            postData(data);
+            signIn();
+        };
+
+        function getData() {
+            request.open('GET', 'https://reqres.in/api/users?page=1', true);
+            request.onload = function () {
+                if (request.status > 200) {
+                    alert('');
+                    // Arrumarrrrrrrrrrrrrrrrrrrrr
+                } else {
+                    for (var i = 0; i < request.response.data.length; i++) {
+                        if (request.response.data[i].email == data.email) {
+                            localStorage.setItem('user', JSON.stringify(request.response.data[i]));
+                        }
+                    }
+
+                }
+            };
+            request.send();
+        };
+
+        function postData(data) {
+
+            request.open('POST', 'https://reqres.in/api/login', true);
+
+            request.responseType = 'json';
+            request.setRequestHeader('Content-Type', 'application/json');
+
+            request.onload = function () {
+                if (request.status > 200) {
+                    // criar o tratamento de erro
+                    console.log(request.response);
+                } else {
+                    // console.log(request.response);
+                    getData(data);
+                }
+            };
+            request.send(JSON.stringify(data));
+        };
+
+        function signIn() {
+            bloco.className = 'none';
+            blocoI.className = 'bloco-i';
+            blocoLogin.className = 'none';
+            btUpload.innerHTML = 'Upload';
+            btSign.style.display = 'none';
+            avatarShow.removeAttribute('style');
+            avatar.setAttribute('src', JSON.parse(localStorage.getItem('user')).avatar);
+        }
+ 
+
+    </script>
 </body>
 
 </html>
